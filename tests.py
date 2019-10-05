@@ -40,6 +40,17 @@ class EchoTestCase(unittest.TestCase):
             actual,
             "expected {0}, got {1}".format(expected, actual)
         )
+    
+    @unittest.skip("with len(msg) == len(buffer) serer hangs")
+    def test_buffer_size_message_echo(self):
+        """test that a message longer than 16 bytes echoes in 16-byte chunks"""
+        expected = "abcdrfghijklmnop"
+        actual = self.send_message(expected)
+        self.assertEqual(
+            expected,
+            actual,
+            "expected {0}, got {1}".format(expected, actual)
+        )
 
 
 if __name__ == '__main__':
