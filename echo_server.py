@@ -55,13 +55,10 @@ def server(log_buffer=sys.stderr):
                     #       following line with your code.  It's only here as
                     #       a placeholder to prevent an error in string
                     #       formatting
-                    # data = b''
+                    data = b''
                     # print(f"before conn.recv(BUFFER_SIZE)")  # hangs here
                     data = conn.recv(BUFFER_SIZE)
-                    # if len(data) <= 0:
-                    #     break
-                    # print(f"after conn.recv(BUFFER_SIZE)")  # hangs here
-                    print('received "{0}"'.format(data.decode('utf8')))
+                    print('recv "{0}"'.format(data.decode('utf8')))
                     
                     # TODO: Send the data you received back to the client, log
                     # the fact using the print statement here.  It will help in

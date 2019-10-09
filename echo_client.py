@@ -34,11 +34,19 @@ def client(msg, log_buffer=sys.stderr):
         #       do it. This will help in debugging problems
         chunk = ''
         chunks = []
-        bytes_recd = BUFFER_SIZE
-        while bytes_recd >= BUFFER_SIZE:
+        msg_size = len(msg)
+        chunk_size = BUFFER_SIZE
+        bytes_recd = 0
+        # while chunk_size == BUFFER_SIZE:
+        while True:
             chunk = sock.recv(BUFFER_SIZE)
-            bytes_recd = len(chunk)
+            chunk_size = len(chunk)
+            bytes_recd += chunk_size
             chunks.append(chunk)
+            print(f"chunk size: {chunk_size}, bytes recv: {bytes_recd}, msg: {msg_size}")
+            if bytes_recd == msg_size:
+                # sock.sendall("".encode('utf-8'))
+                break
             # print(f"chunk len {bytes_recd}, chunk {chunks}")
 
         # print('received "{0}"'.format(chunk.decode('utf8')), file=log_buffer)
